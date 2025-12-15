@@ -80,10 +80,16 @@ You should be able to:
 ## Reflection Questions (Answer in Your Own Words)
 
 - Why are topics considered logical streams?
+Topics are considered streams because they implicate a communication between a producer and a consumer with a series of unbounded data detailing each purchase. Each message is tailored to a topic and are ordrered according to given partitions.
 - Why does Kafka use partitions?
+Kafka uses partitions to organize messages and enable parallel processing. They also have a high horizontal scaling that can go up to one million messages.
 - What is the role of offsets?
+Offsets help locate customers in a stream and track their statistics and progress.
 - Why does each partition only allow one consumer per group?
+To help set the order of a message and ensure a simple and reliable management of resources.
 - What happens if there are more consumers than partitions?
+The state becomes idle.
+
 
 ---
 
@@ -99,3 +105,13 @@ Submit a short document explaining:
 - What commands you used
 - What you observed
 - Answers to the reflection questions
+
+Partition:2     Offset:3        {"id":2,"amount":75.0,"type":"refund"}
+Partition:2     Offset:4        {"id":3,"amount":300.0,"type":purchase"}
+Partition:0     Offset:0        {id:1,"amount":120.5,"type","purchase"}
+Partition:0     Offset:1        {id:1,"amount":75.0,"type","refund"}
+Partition:0     Offset:2
+Partition:0     Offset:3        {"id":1,"amount":120.5,"type","purchase"}
+Partition:0     Offset:4        {"id":1,"amount":120.5,"type":"purchase"}
+Partition:0     Offset:5        {"id":2,"amount":75.0,"type":"refund"}
+Partition:0     Offset:6        {"id":3,"amount":300.0,"type":purchase"}
